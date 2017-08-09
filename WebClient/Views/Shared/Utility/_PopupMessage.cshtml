@@ -1,0 +1,13 @@
+﻿@model Shared.MessageContents
+@{
+    string modifiedMessage = Model.Message
+    .Replace(Environment.NewLine, "<br />")
+    .Replace("\r", "<br />")
+    .Replace("\n", "<br />");
+ }
+<div id="dialog" title=@Model.Title style="display:none;">
+    @Html.Raw(@modifiedMessage)
+</div>
+
+
+

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/FinanceManager.Contract.Events" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/FinanceManager.Contract.Events" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:7085/?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="FinancialTransactionChangedEvent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountId" type="ser:guid" />
+      <xs:element minOccurs="0" name="TransactionId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FinancialTransactionChangedEvent" nillable="true" type="tns:FinancialTransactionChangedEvent" />
+  <xs:complexType name="FinancialAccountChangedEvent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FinancialAccountChangedEvent" nillable="true" type="tns:FinancialAccountChangedEvent" />
+  <xs:complexType name="FinancialTransactionRemovedEvent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountId" type="ser:guid" />
+      <xs:element minOccurs="0" name="TransactionId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FinancialTransactionRemovedEvent" nillable="true" type="tns:FinancialTransactionRemovedEvent" />
+  <xs:complexType name="FinancialTransactionAddedEvent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountId" type="ser:guid" />
+      <xs:element minOccurs="0" name="TransactionId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FinancialTransactionAddedEvent" nillable="true" type="tns:FinancialTransactionAddedEvent" />
+  <xs:complexType name="FinancialAccountAddedEvent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FinancialAccountAddedEvent" nillable="true" type="tns:FinancialAccountAddedEvent" />
+  <xs:complexType name="FinancialAccountRemovedEvent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FinancialAccountRemovedEvent" nillable="true" type="tns:FinancialAccountRemovedEvent" />
+</xs:schema>

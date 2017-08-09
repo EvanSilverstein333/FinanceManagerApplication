@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/FinanceManager.Contract.Queries" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/FinanceManager.Contract.Queries" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:7085/?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="FindFinancialTransactionsByDateQuery">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FindFinancialTransactionsByDateQuery" nillable="true" type="tns:FindFinancialTransactionsByDateQuery" />
+  <xs:complexType name="FindFinancialAccountsBySearchTextQuery">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SearchText" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FindFinancialAccountsBySearchTextQuery" nillable="true" type="tns:FindFinancialAccountsBySearchTextQuery" />
+  <xs:complexType name="GetAllFinancialAccountsQuery">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="GetAllFinancialAccountsQuery" nillable="true" type="tns:GetAllFinancialAccountsQuery" />
+  <xs:complexType name="GetFinancialAccountBalanceQuery">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetFinancialAccountBalanceQuery" nillable="true" type="tns:GetFinancialAccountBalanceQuery" />
+  <xs:complexType name="GetFinancialTransactionByIdQuery">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="TransactionId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetFinancialTransactionByIdQuery" nillable="true" type="tns:GetFinancialTransactionByIdQuery" />
+  <xs:complexType name="GetFinancialTransactionsByAccountIdQuery">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetFinancialTransactionsByAccountIdQuery" nillable="true" type="tns:GetFinancialTransactionsByAccountIdQuery" />
+  <xs:complexType name="GetFinancialAccountByIdQuery">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GetFinancialAccountByIdQuery" nillable="true" type="tns:GetFinancialAccountByIdQuery" />
+</xs:schema>

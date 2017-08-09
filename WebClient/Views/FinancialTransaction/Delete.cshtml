@@ -1,0 +1,31 @@
+﻿@model FinanceManager.Contract.Dto.FinancialTransactionDto
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    @Html.Partial("_TransactionReadView", Model)
+</div>
+
+@using (Html.BeginForm()) {
+    //required because mvc validation is performed
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(t => t.AccountId)
+    @Html.HiddenFor(t => t.Date)
+    @Html.HiddenFor(t => t.Notes)
+    @Html.HiddenFor(t => t.Money.Amount)
+    @Html.HiddenFor(t => t.Money.Currency)
+    @Html.HiddenFor(t => t.RowVersion)
+
+
+
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        @Html.ActionLink("Back to List", "Index", new { accountId = Model.AccountId })
+    </div>
+}

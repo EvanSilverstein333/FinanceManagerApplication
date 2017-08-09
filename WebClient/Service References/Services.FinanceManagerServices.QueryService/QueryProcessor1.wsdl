@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="FinanceManagerQueryProcessor" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_FinanceManagerQueryProcessor_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:7075/?xsd=xsd4" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:7075/?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/ValueObjects.Wcf" />
+      <xsd:import schemaLocation="http://localhost:7075/?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:7075/?xsd=xsd1" namespace="http://schemas.datacontract.org/2004/07/FinanceManager.Contract.Queries" />
+      <xsd:import schemaLocation="http://localhost:7075/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/FinanceManager.Contract.Dto" />
+      <xsd:import schemaLocation="http://localhost:7075/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/ValueObjects.Finance" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="FinanceManagerQueryProcessor_Submit_InputMessage">
+    <wsdl:part name="parameters" element="tns:Submit" />
+  </wsdl:message>
+  <wsdl:message name="FinanceManagerQueryProcessor_Submit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SubmitResponse" />
+  </wsdl:message>
+  <wsdl:message name="FinanceManagerQueryProcessor_Submit_MyValidatorFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/ValueObjects.Wcf" name="detail" element="q1:MyValidator" />
+  </wsdl:message>
+  <wsdl:portType name="FinanceManagerQueryProcessor">
+    <wsdl:operation name="Submit">
+      <wsdl:input wsaw:Action="http://tempuri.org/FinanceManagerQueryProcessor/Submit" message="tns:FinanceManagerQueryProcessor_Submit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/FinanceManagerQueryProcessor/SubmitResponse" message="tns:FinanceManagerQueryProcessor_Submit_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/FinanceManagerQueryProcessor/SubmitMyValidatorFault" name="MyValidatorFault" message="tns:FinanceManagerQueryProcessor_Submit_MyValidatorFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_FinanceManagerQueryProcessor" type="tns:FinanceManagerQueryProcessor">
+    <wsp:PolicyReference URI="#NetTcpBinding_FinanceManagerQueryProcessor_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Submit">
+      <soap12:operation soapAction="http://tempuri.org/FinanceManagerQueryProcessor/Submit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MyValidatorFault">
+        <soap12:fault use="literal" name="MyValidatorFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_FinanceManagerQueryProcessor" type="tns:FinanceManagerQueryProcessor">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Submit">
+      <soap:operation soapAction="http://tempuri.org/FinanceManagerQueryProcessor/Submit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MyValidatorFault">
+        <soap:fault use="literal" name="MyValidatorFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FinanceManagerQueryProcessor">
+    <wsdl:port name="NetTcpBinding_FinanceManagerQueryProcessor" binding="tns:NetTcpBinding_FinanceManagerQueryProcessor">
+      <soap12:address location="net.tcp://localhost:7070/Infrastructure.Abstractions" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:7070/Infrastructure.Abstractions</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>EVAN\Evan</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_FinanceManagerQueryProcessor" binding="tns:BasicHttpBinding_FinanceManagerQueryProcessor">
+      <soap:address location="http://localhost:7075/Infrastructure.Abstractions" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
