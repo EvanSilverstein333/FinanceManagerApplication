@@ -30,9 +30,9 @@ namespace WebClient.Infrastructure.IocInstallers
             _simpleContainer.Register<ILogger, Logger>();
             _simpleContainer.RegisterSingleton<ICommandProcessor>(new CommandProcessor());
             _simpleContainer.RegisterSingleton<IQueryProcessor>(new QueryProcessor());
-
             _simpleContainer.Register(typeof(ICommandHandler<>), typeof(WcfServiceCommandHandlerProxy<>));
             _simpleContainer.Register(typeof(IQueryHandler<,>), typeof(WcfServiceQueryHandlerProxy<,>));
+            _simpleContainer.RegisterSingleton<FinanceManagerMessageCallback>();
 
             _simpleContainer.Register<IValidatorFactory, ApplicationValidatorFactory>(Lifestyle.Singleton);
             FluentValidationModelValidatorProvider.Configure(provider =>{
@@ -40,19 +40,6 @@ namespace WebClient.Infrastructure.IocInstallers
                 provider.AddImplicitRequiredValidator = false;
             });
 
-                //_simpleContainer.RegisterDecorator(typeof(ICommandHandler<>), typeof(NotifyOnRequestCompletedCommandHandlerDecorator<>));
-                //_simpleContainer.RegisterDecorator(typeof(ICommandHandler<>), typeof(FromWcfFaultTranslatorCommandHandlerDecorator<>));
-                //_simpleContainer.RegisterDecorator(typeof(ICommandHandler<>), typeof(ErrorHandlingCommandHandlerDecorator<>));
-
-
-                //_simpleContainer.RegisterDecorator(typeof(ICommandHandler<>), typeof(NotifyOnRequestIssuedCommandHandlerDecorator<>));
-                //_simpleContainer.RegisterDecorator(typeof(ICommandHandler<>), typeof(NotifyOnRequestCompletedCommandHandlerDecorator<>));
-                //_simpleContainer.Register<IDomainEventStore, DomainEventStore>();
-                //_simpleContainer.Register<IDomainEventProcessor, DomainEventProcessor>();
-                //_simpleContainer.Register<IExternalMessagePublisher, ExternalMessagePublisher>();
-
-                //_simpleContainer.RegisterCollection(typeof(IEventHandler<>), AppDomain.CurrentDomain.GetAssemblies());
-
-            }
+        }
     }
 }

@@ -10,13 +10,13 @@ using SimpleInjector.Integration.Web;
 using SimpleInjector.Integration.Web.Mvc;
 using System.Web.Mvc;
 using log4net;
+using WebClient.Infrastructure.Abstractions;
 
 namespace WebClient.Infrastructure
 {
     public static class Bootstrapper
     {
         public static readonly Container Container;
-        public static Type[] AllContractTypes { get; private set; }
         public static readonly ILog Logger;
 
 
@@ -27,19 +27,15 @@ namespace WebClient.Infrastructure
             container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
             InfrastructureInstaller.RegisterServices(container);
             ControllersInstaller.RegisterServices(container);
-            GetContractTypes();
 
             container.Verify();
             Container = container;
 
+            //FinanceManagerMessageCallback.SubscribeToMessages();
+
         }
 
-        private static void GetContractTypes()
-        {
-            var allTypesInContractAssembly = typeof(ICommand).Assembly.GetExportedTypes();
-            var contractTypes = allTypesInContractAssembly.Where(t => t.IsClass).ToArray();
-            AllContractTypes = contractTypes;
-        }
+
 
     }
 }
